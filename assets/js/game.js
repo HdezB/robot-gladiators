@@ -3,15 +3,18 @@ var playerName = window.prompt("What is your robot's name?")
 var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
+
 //You can also log multiple values at once like this
 //console.log(name. attak, health);
 
-var enemyName = "Roborto";
+var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"]
 var enemyHealth = 50;
 var enemyAttack = 12;
 
+
+
 // this creates a function named "fight"
-var fight = function () {
+var fight = function (enemyName) {
     window.alert("Welcome to Robot Gladiators")
     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
 
@@ -73,4 +76,42 @@ var fight = function () {
 
 
 
-fight();
+
+
+for(var i = 0; i < enemyNames.length; i++) {
+    fight(enemyNames[i]);
+  }
+
+
+
+
+
+
+
+
+//function to start a new game
+var startGame = function() {
+    //reset player stats
+    playerHealth = 100;
+    playerAttack = 10;
+    playerMoney = 10;
+    for (var i = 0; i < enemyNames.length; i++) {
+        if (playerHealth > 0) {
+            window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+
+            var pickedEnemyName = enemyNames[i];
+
+            enemyHealth = 50;
+            
+            fight(pickedEnemyName);
+        }
+        else {
+            window.alert("You have lost your robot in battle! Game Over!")
+            break;
+        }
+    }
+    //play again
+    startGame();
+}
+
+startGame();
